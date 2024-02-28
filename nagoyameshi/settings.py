@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'NagoyameshiApp',
 ]
 
+# AUTH_USER_MODEL = "NagoyameshiApp.CustomUser"
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     # Herokuデプロイのために追加
