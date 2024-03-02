@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'NagoyameshiApp',
 ]
 
-# AUTH_USER_MODEL = "NagoyameshiApp.CustomUser"
+AUTH_USER_MODEL = "NagoyameshiApp.CustomUser"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
