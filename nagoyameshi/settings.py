@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_bootstrap5',
     'NagoyameshiApp',
+    'storages', # S3を使うために追加
 ]
 
 AUTH_USER_MODEL = "NagoyameshiApp.CustomUser"
@@ -131,22 +132,44 @@ USE_TZ = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# ブラウザからアクセスする際のURL
-STATIC_URL = 'static/'
-
-# collectstaticコマンドを実行した際に収集されたstaticファイルを配置する場所の設定）
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-# 参照するstaticフォルダを指定
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "NagoyameshiApp/static")
-]
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'top'
 LOGOUOT_REDIRECT_URL = 'top'
 
 
-# パスワードのHASH化
-# AUTH_PASSWORD_HASHERS = [
-#     "django.contrib.auth.hashers.PBKDF2SHA256PasswordHasher"
+
+
+# ブラウザからアクセスする際のURL
+# STATIC_URL = 'static/'
+# S3を使うためにコメントアウト
+
+# collectstaticコマンドを実行した際に収集されたstaticファイルを配置する場所の設定）
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# S3を使うためにコメントアウト
+
+# プロジェクトのアプリで使うstaticファイルを格納している、サーバ内の場所を指定
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "NagoyameshiApp/static")
+]
+
+# CSSなどを参照するstaticファイルの保管先を指定
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# S3を使うために追加
+
+# 投稿機能によってアップロードされた写真の保管先を指定
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# S3を使うために追加
+
+# S3の設定
+# アクセスキーID
+AWS_ACCESS_KEY_ID = 'AKIAW3MD7HXY6TGBVEUY'
+# シークレットアクセスキー
+AWS_SECRET_ACCESS_KEY = 'GddTnLYz9OS+/t4iZq6bkdGnKogxoeFYF1SUSLRP'
+# バケット名
+AWS_STORAGE_BUCKET_NAME = 'aws-egami-test-nagoyameshi'
+# 保存先URL
+STATIC_URL = 'https://aws-egami-test-nagoyameshi.s3.ap-northeast-1.amazonaws.com/'
+AWS_LOCATION = 'static'
+
+
