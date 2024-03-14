@@ -141,3 +141,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "NagoyameshiApp/static")
 ]
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'top'
+LOGOUOT_REDIRECT_URL = 'top'
+
+
+# パスワードのHASH化
+# AUTH_PASSWORD_HASHERS = [
+#     "django.contrib.auth.hashers.PBKDF2SHA256PasswordHasher"
